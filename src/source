@@ -1,0 +1,61 @@
+package eclipsepackage;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class shutterflyevents {
+
+	public static void main(String[] args) throws JSONException, Exception {
+
+		String jsonData = "";
+		BufferedReader br = null;
+		try {
+			String line;
+			br = new BufferedReader(new FileReader("/Users/kavithabangalorenagaraju/Desktop/events.txt"));
+			while ((line = br.readLine()) != null) {
+				jsonData += line + "\n";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)
+					br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		JSONObject obj = new JSONObject(jsonData);
+		System.out.println(jsonData);
+		System.out.println("Type: " + obj.getString("type"));
+		System.out.println("Name: " + obj.getString("last_name"));
+		// System.out.println("Amount: " + obj.getString("total_amount"));
+		int top = 0;
+		customerValue(top, jsonData);
+	}
+
+	public static void customerValue(int top, String jsonData) {
+		float avg;
+		float sum = 10, total = 0, value = 0;
+		float visit[] = new float[1];
+
+		for (int i = 1; i <= 1; i++)
+
+		{
+			System.out.println("Customer logged in " + i + " a week");
+
+			sum = sum + visit[i - 1];
+			total = sum * i;
+		}
+		System.out.println("Sum = " + sum);
+		avg = total / 7;
+		System.out.println("Average sale per week=" + avg);
+		value = 52 * avg * 10;
+		System.out.println("Shutterfly Customer Lifetime Value=" + value);
+	}
+}
